@@ -19,7 +19,8 @@ module Hashid
 
     module ClassMethods
       def hashids
-        Hashids.new(table_name, 6)
+        salt = "#{table_name}#{ENV['HASHIDS_SALT']}"
+        Hashids.new(salt, 6)
       end
 
       def encode_id(id)
